@@ -1,0 +1,7 @@
+Explain supervised learning? 
+Email spam detection comes under supervised or unsupervised learning?
+Differentiate between boosting and bagging.
+Explain deep learning techniques in brief.
+Draw the class diagram for hotel management system.
+Draw the state diagram for library management system.
+Write functional, non functional requirements and domain requirements.

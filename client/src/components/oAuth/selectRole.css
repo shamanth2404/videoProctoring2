@@ -1,0 +1,52 @@
+/* RoleSelection.css */
+
+.role-selection-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+  }
+  
+  .logo {
+    width: 150px;
+    margin-bottom: 20px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: #333;
+  }
+  
+  .role-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .role-button {
+    padding: 15px 30px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .student-button {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .teacher-button {
+    background-color: #2196f3;
+    color: white;
+  }
+  
+  .role-button:hover {
+    opacity: 0.8;
+  }
+  

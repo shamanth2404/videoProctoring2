@@ -1,0 +1,101 @@
+.user-login .logo img {
+	width: 10rem;
+	margin-left: 10px;
+  }
+  
+  
+  .user-login {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 2em;
+	margin-top: 20px;
+	padding: 1em;
+  }
+  
+  .user-login .login-form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 3em;
+  }
+  
+  .login-form .input-fields {
+	max-width: 40vw;
+	min-width: 30vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 1.75em;
+	margin-bottom: 20px;
+  }
+  
+  .input-fields input {
+	padding: 0.9rem 1.8rem;
+	font-size: 1rem;
+	width: 100%;
+  }
+  
+  .errorMessage {
+	width: 100%;
+	color: brown;
+	text-align: center;
+	margin-bottom: 20px;
+  }
+  
+  p {
+	width: 100%;
+	text-align: center;
+	font-size: 14px;
+	margin-top: 2px;
+  }
+  
+  .newUser a {
+	color: rgb(40, 77, 209);
+	text-decoration: underline;
+  }
+
+  .login-bottom {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 5px;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+	.login-form .input-fields {
+	  max-width: 90vw;
+	  min-width: 80vw;
+	}
+  }
+  
+  @media (max-width: 480px) {
+	.user-login .logo img {
+	  width: 8rem;
+	}
+  
+	.login-form .input-fields {
+	  max-width: 100vw;
+	  min-width: 90vw;
+	  gap: 1.5em;
+	}
+  
+	.input-fields input {
+	  padding: 0.8rem 1.6rem;
+	  font-size: 0.9rem;
+	}
+  
+	.user-login {
+	  gap: 1.5em;
+	  margin-top: 10px;
+	}
+  
+	.user-login .login-form {
+	  gap: 2em;
+	}
+  }
+  
