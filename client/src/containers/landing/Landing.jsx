@@ -25,12 +25,7 @@ const Landing = () => {
   const [windows, setWindows] = useState([]);
   const buttonRef = useRef(null);
 
-  const blue = async () => {
-    const response = await axios.get(`http://localhost:5000/api/check-usb`);
-    console.log(response.data);
-  };
-
-  useEffect(() => {
+   useEffect(() => {
     if (!isAuthenticated) {
       navigate("/login");
     }
@@ -46,8 +41,10 @@ const Landing = () => {
         return;
       }
       if (testCode) {
-        setWindows([]);
-        setAttemptMessage("Loading...")
+        try{
+
+          setWindows([]);
+          setAttemptMessage("Loading...")
         const email = localStorage.getItem("email");
         const response = await axios.get(
           `http://localhost:5000/api/attempted-test?email=${email}&testCode=${testCode}`
@@ -71,13 +68,13 @@ const Landing = () => {
           console.log(currentDate);
           const diffInMilliseconds = currentDate - endTime;
 
-          if (currentDate < startTime) {
-            setAttemptMessage("Test has not started yet");
-            return;
-          } else if (currentDate > endTime) {
-            setAttemptMessage("Test has Ended");
-            return;
-          }
+          // if (currentDate < startTime) {
+          //   setAttemptMessage("Test has not started yet");
+          //   return;
+          // } else if (currentDate > endTime) {
+          //   setAttemptMessage("Test has Ended");
+          //   return;
+          // }
           // const openWindows = await axios.get(`http://localhost:8080/window_tracking`);
           //   console.log(openWindows.data);
           //   if(openWindows.data.length > 0){
@@ -88,22 +85,22 @@ const Landing = () => {
           //     setAttemptMessage("Please close all windows before joining a test");
           //     return;
           //   }
-          const response = await axios.get(
-            "http://localhost:8080/bluetooth/status"
-          );
-          console.log(response.data.bluetooth_on);
-          if (response.data.bluetooth_on) {
-            setAttemptMessage("Please Off the Bluetooth");
-            return;
-          }
-          const response2 = await axios.get(
-            "http://localhost:8080/usb/devices"
-          );
-          console.log(response2.data);
-          if (response2.data.usb_devices.length > 0) {
-            setAttemptMessage("Please remove USB devices");
-            return;
-          }
+          // const response = await axios.get(
+          //   "http://localhost:8080/bluetooth/status"
+          // );
+          // console.log(response.data.bluetooth_on);
+          // if (response.data.bluetooth_on) {
+          //   setAttemptMessage("Please Off the Bluetooth");
+          //   return;
+          // }
+          // const response2 = await axios.get(
+          //   "http://localhost:8080/usb/devices"
+          // );
+          // console.log(response2.data);
+          // if (response2.data.usb_devices.length > 0) {
+          //   setAttemptMessage("Please remove USB devices");
+          //   return;
+          // }
 
           const addAttempt = await axios.post(
             `http://localhost:5000/api/add-attempt?email=${email}&testCode=${testCode}`
@@ -119,7 +116,7 @@ const Landing = () => {
             }
             const durationInMs = endTime - currentDate;
             console.log(durationInMs);
-
+            
             const totalMinutes = Math.floor(durationInMs / (1000 * 60));
             const seconds = Math.floor((durationInMs / 1000) % 60);
             localStorage.setItem("minutes", totalMinutes);
@@ -131,14 +128,24 @@ const Landing = () => {
         } else {
           setAttemptMessage("Test Already Attempted");
         }
+      }catch (errors){
+        console.log(errors)
+      }
       } else {
         setAttemptMessage("Please enter a test code.");
       }
     } else {
-      console.error("Test code input field not found.");
+      console.log("Test code input field not found.");
     }
   };
 
+  const handleClick = async () => {
+    const response2 = await axios.get(
+      "http://localhost:5000/api/allTests"
+    );
+    console.log(response2.data);
+  }
+  
   const handleCreate = () => {
     console.log(localStorage.getItem("role"));
     if (localStorage.getItem("role") === "Student") {
@@ -182,6 +189,7 @@ const Landing = () => {
           </div>
 
           <p className="desc">OR</p>
+          <button onClick={handleClick} className="button"></button>
           <div className="input-item unique-link">
             <div>
               <CommonInput
@@ -233,6 +241,7 @@ const Landing = () => {
             </div>
             <div className="infinite">
               <img src={infinite} alt="infinite" />
+              <button onClick={handleClick} className="button"></button>
             </div>
 
             <div className="right-text">
